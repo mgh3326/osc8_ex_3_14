@@ -25,6 +25,11 @@ int main(VOID)
 	int num = 0;
 
 	scanf_s("%d", &num);
+	if (num<0)
+	{
+		printf("Error : Enter positive number.\n");
+		exit(0);
+	}
 	char message[BUFFER_SIZE] = "greet";
 	sprintf(message, "%d", num);
 	DWORD written;
@@ -52,7 +57,7 @@ int main(VOID)
 
 	/* we do not want the child to inherit the write end of the pipe */
 	SetHandleInformation(WriteHandle, HANDLE_FLAG_INHERIT, 0);
-	TCHAR Command[] = _T(".\\14_child.exe"); // 이렇게 수정 해야되네
+	TCHAR Command[] = _T(".\\child.exe"); // 이렇게 수정 해야되네
 
 										  /* create the child process */
 	if (!CreateProcess(NULL,
